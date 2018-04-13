@@ -1,6 +1,6 @@
 # is-gitlab-url
 
->  Check if a passed string is a valid GitHub URL
+>  Check if a passed string is a valid Gitlab URL
 
 Unlike [is-git-url](https://gitlab.com/jonschlinkert/is-git-url), is-gitlab-url is a domain-specific validator. It returns `true` if passed URL is a part of `gitlab.com` domain only.
 
