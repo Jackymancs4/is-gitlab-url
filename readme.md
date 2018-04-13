@@ -1,59 +1,59 @@
-# is-github-url [![Build Status](https://travis-ci.org/alferov/is-github-url.svg?branch=master)](https://travis-ci.org/alferov/is-github-url)
+# is-gitlab-url
 
 >  Check if a passed string is a valid GitHub URL
 
-Unlike [is-git-url](https://github.com/jonschlinkert/is-git-url), is-github-url is a domain-specific validator. It returns `true` if passed URL is a part of `github.com` domain only.
+Unlike [is-git-url](https://gitlab.com/jonschlinkert/is-git-url), is-gitlab-url is a domain-specific validator. It returns `true` if passed URL is a part of `gitlab.com` domain only.
 
 ## Installation
 ```
-$ npm install is-github-url --save
+$ npm install is-gitlab-url --save
 ```
 
 ## Usage
 ```js
-var isGithubUrl = require('is-github-url');
+var isGitlabUrl = require('is-gitlab-url');
 
 // Valid examples
-isGithubUrl('https://github.com/facebook');
+isGitlabUrl('https://gitlab.com/facebook');
  // => true
-isGithubUrl('https://github.com/facebook/react');
+isGitlabUrl('https://gitlab.com/facebook/react');
  // => true
-isGithubUrl('https://github.com/facebook/react/releases/tag/v0.14.0');
+isGitlabUrl('https://gitlab.com/facebook/react/releases/tag/v0.14.0');
 // => true
-isGithubUrl('git@github.com:facebook/react.git');
+isGitlabUrl('git@gitlab.com:facebook/react.git');
 // => true
-isGithubUrl('git://github.com/facebook/react.git#gh-pages');
+isGitlabUrl('git://gitlab.com/facebook/react.git#gh-pages');
 // => true
 
 // Invalid examples
-isGithubUrl('https://google.com');
+isGitlabUrl('https://google.com');
  // => false
-isGithubUrl('unknown://github.com');
+isGitlabUrl('unknown://gitlab.com');
 // => false
-isGithubUrl('http://facebook.github.io/');
+isGitlabUrl('http://facebook.gitlab.io/');
 // => false
 
 // Repository mode can be used to check whether a passed URL
 // is a valid repository URL
-isGithubUrl('https://github.com/facebook/react', { repository: true });
+isGitlabUrl('https://gitlab.com/facebook/react', { repository: true });
 // => true
-isGithubUrl('https://github.com/facebook', { repository: true });
+isGitlabUrl('https://gitlab.com/facebook', { repository: true });
 // => false
-isGithubUrl('https://github.com/facebook/react/releases/tag/v0.14.0', {
+isGitlabUrl('https://gitlab.com/facebook/react/releases/tag/v0.14.0', {
   repository: true
 });
 // => false
 
 // Strict mode is used to validate URLs before cloning
 // Strict mode turns on automatically if URL contains git protocol
-isGithubUrl('https://github.com/facebook/react.git', { strict: true });
+isGitlabUrl('https://gitlab.com/facebook/react.git', { strict: true });
 // => true
-isGithubUrl('https://github.com/facebook/react', { strict: true });
+isGitlabUrl('https://gitlab.com/facebook/react', { strict: true });
 // => false
 ```
 
 ## API
-### `isGithubUrl(url, [options])`
+### `isGitlabUrl(url, [options])`
 Check if a passed string is a valid GitHub URL
 
 #### Params
@@ -63,4 +63,4 @@ Check if a passed string is a valid GitHub URL
   - `repository` (Boolean): Match only valid GitHub repo URLs
 
 ## License
-MIT © [Philipp Alferov](https://github.com/alferov)
+MIT © [Giacomo Rossetto](https://gitlab.com/alferov)
