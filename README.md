@@ -63,4 +63,4 @@ Check if a passed string is a valid GitHub URL
   - `repository` (Boolean): Match only valid GitHub repo URLs
 
 ## License
-MIT © [Giacomo Rossetto](https://gitlab.com/alferov)
+MIT © [Giacomo Rossetto](https://github.com/Jackymancs4)
