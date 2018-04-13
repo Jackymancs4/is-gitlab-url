@@ -1,23 +1,23 @@
-'use strict';
+'use strict'
 
-const plain_regex = '(?:https?\\:\\/\\/)gitlab.com\\/?$'
-const autostrict_regex = 'git(@|:)|\.git(?:\/?|\\#[\d\w\.\-_]+)$'
-const strictPattern_regex = '\\/[\\w\\.-]+?\\.git(?:\\/?|\\#[\\w\\.\\-_]+)?$';
-const repoRequired_regex = '\\/[\\w\\.-]+\\/?(?!=.git)(?:\\.git(?:\\/?|\\#[\\w\\.\\-_]+)?)?$'
-const repoNotRequired_regex = '(?:\\/[\\w\\.\\/-]+)?\\/?(?:#\\w+?|\\?.*)?$'
-const finalPattern_regex = '(?:git|https?|git@)(?:\\:\\/\\/)?gitlab.com[/|:][A-Za-z0-9-]+?'
+const plainRegex = '(?:https?\\:\\/\\/)gitlab.com\\/?$'
+const autostrictRegex = 'git(@|:)|\.git(?:\/?|\\#[\d\w\.\-_]+)$'
+const strictPatternRegex = '\\/[\\w\\.-]+?\\.git(?:\\/?|\\#[\\w\\.\\-_]+)?$'
+const repoRequiredRegex = '\\/[\\w\\.-]+\\/?(?!=.git)(?:\\.git(?:\\/?|\\#[\\w\\.\\-_]+)?)?$'
+const repoNotRequiredRegex = '(?:\\/[\\w\\.\\/-]+)?\\/?(?:#\\w+?|\\?.*)?$'
+const finalPatternRegex = '(?:git|https?|git@)(?:\\:\\/\\/)?gitlab.com[/|:][A-Za-z0-9-]+?'
 
-var isPlainGlUrl = function(string) {
-  var re = new RegExp(plain_regex);
-  return re.test(string);
-};
+var isPlainGlUrl = function (string) {
+  var re = new RegExp(plainRegex)
+  return re.test(string)
+}
 
 // Switch to strict mode automatically if the following pattern matches passed
 // string
-var isStrictRequired = function(string) {
-  var re = new RegExp(autostrict_regex);
-  return re.test(string);
-};
+var isStrictRequired = function (string) {
+  var re = new RegExp(autostrictRegex)
+  return re.test(string)
+}
 
 /**
  * isGitlabUrl
@@ -32,20 +32,20 @@ var isStrictRequired = function(string) {
  *  - `repository` (Boolean): Match only valid GitHub repo URLs
  * @return {Boolean} Result of validation
  */
-module.exports = function isGitlabUrl(url, options) {
-  options = options || {};
-  var isStrict = options.strict || isStrictRequired(url);
-  var repoRequired = options.repository || isStrict;
+module.exports = function isGitlabUrl (url, options) {
+  options = options || {}
+  var isStrict = options.strict || isStrictRequired(url)
+  var repoRequired = options.repository || isStrict
 
-  var loosePattern = repoRequired ? repoRequired_regex : repoNotRequired_regex;
-  var endOfPattern = isStrict ? strictPattern_regex : loosePattern;
+  var loosePattern = repoRequired ? repoRequiredRegex : repoNotRequiredRegex
+  var endOfPattern = isStrict ? strictPatternRegex : loosePattern
 
-  var pattern = finalPattern_regex + endOfPattern;
+  var pattern = finalPatternRegex + endOfPattern
 
   if (isPlainGlUrl(url) && !repoRequired) {
-    return true;
+    return true
   }
 
-  var re = new RegExp(pattern);
-  return re.test(url);
-};
+  var re = new RegExp(pattern)
+  return re.test(url)
+}
